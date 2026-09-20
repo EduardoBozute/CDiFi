@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef enum {
     UNMARKED_DATA,
@@ -15,6 +16,6 @@ typedef enum {
     EXTENDED_PALM
 } Gesture;
 
-int load_file_data(char[] file_name, double[][10] data_loaded);
+int load_file_data(char(*), double(*)[10]);
 
 #endif

@@ -1,6 +1,6 @@
 #include "data_reading.h"
 
-int load_file_data(char[] file_name, double[][10] data_loaded){
+int load_file_data(char file_name[], double data_loaded[][10]){
 
     FILE* file = fopen(file_name, "r");
 
@@ -9,11 +9,11 @@ int load_file_data(char[] file_name, double[][10] data_loaded){
         return 0; 
     }
 
-    char[10] data;
+    char data[10];
     int line = 0;
     int column = 0;
 
-    while(fscanf(file, "%9[^\t\n], data") == 1){
+    while(fscanf(file, "%9[^\t\n]", data) == 1){
         data_loaded[line][column] = strtod(data, NULL);
 
         char next = fgetc(file);

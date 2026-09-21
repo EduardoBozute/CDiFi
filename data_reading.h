@@ -16,6 +16,6 @@ typedef enum {
     EXTENDED_PALM
 } Gesture;
 
-int load_file_data(char(*), double(*)[10]);
+int load_file_data(char(*), double(**));
 
 #endif

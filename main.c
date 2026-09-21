@@ -18,13 +18,6 @@ void main(){
 
     load_file_data(file_path, data_loaded);
 
-    for(int i = 0; i<10; i++){
-        for(int j = 0; j<10; j++){
-            printf("%lf\t", data_loaded[i][j]); 
-        }
-        printf("\n");
-    }
-
     for(int i = data_loaded_lines - 1; i>=0; i--){
         free(data_loaded[i]);
     }

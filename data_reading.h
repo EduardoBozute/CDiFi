@@ -22,6 +22,8 @@ void get_file_name(char*, const char*, char*, char);
 
 void make_file_path(char*, const char*, char*, char*);
 
-int load_file_data(char(*), double(**));
+int load_file_data(char*, double**);
+
+void print_data(int, int, double**);
 
 #endif

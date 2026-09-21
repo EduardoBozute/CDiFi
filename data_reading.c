@@ -59,3 +59,28 @@ int load_file_data(char* file_path, double** data_loaded){
     fclose(file);
     return 1;
 }
+
+void print_data(int initial_line, int final_line, double** data_loaded){
+    if(data_loaded[initial_line][0] == 0 || data_loaded[final_line][0] == 0){
+        printf("Invalid interval for reading.\n");
+        return;
+    }
+    else if(final_line >= 0 && final_line >= initial_line){
+        for(int i = initial_line; i < final_line; i++){
+            for(int j = 0; j<10; j++){
+                printf("%lf\t", data_loaded[i][j]); 
+            }
+            printf("\n");
+        }
+    }
+    else if(final_line < 0){
+        int i = initial_line;
+        while(data_loaded[i][0] != 0){
+            for(int j = 0; j<10; j++){
+                printf("%lf\t", data_loaded[i][j]); 
+            }
+            printf("\n");
+            i++;
+        }
+    }
+}

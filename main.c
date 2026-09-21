@@ -2,47 +2,31 @@
 
 void main(){
     const char folder[30] = "EMG_data_for_gestures-master";
-    char command[256];
-    char file_name[40], file_path[100];
-    char subject_number[3]; char sample_number;
-    double** data_loaded = (double**)calloc(100000, sizeof(double*));
-    for(int i = 0; i<100000; i++){
-        data_loaded[i] = (double*)calloc(10, sizeof(double));
-    }
+    char subject_number[3], sample_number, file_name[60], file_path[100];
+
+    int data_loaded_lines = 100000, data_loaded_columns = 10;
+    double** data_loaded = initialize_data_loaded(data_loaded_lines, data_loaded_columns);
 
     printf("Enter the subject number (01-36): ");
     scanf("%s", subject_number);
     printf("Enter the sample number (1-2): ");
     scanf(" %c", &sample_number);
-
-    sprintf(command, "cd %s/%s && ls %c*", folder, subject_number, sample_number);
-
-    printf("%s\n", command);
-
-    FILE* pipe = popen(command, "r");
-
-    fscanf(pipe, "%39s", file_name);
-
-    strcpy(file_path, folder);
-    strcat(file_path, "/");
-    strcat(file_path, subject_number);
-    strcat(file_path, "/");
-    strcat(file_path, file_name);
-    file_path[99] = '\0';
-
-    printf("%s\n", file_path);
-
-    pclose(pipe);
-    pipe = NULL;
-
-    printf("%s\n", file_name);
+    
+    get_file_name(file_name, folder, subject_number, sample_number);
+    make_file_path(file_path, folder, subject_number, file_name);
+    printf("File path: %s\n", file_path);
 
     load_file_data(file_path, data_loaded);
 
-    for(int i = 0; i<100; i++){
+    for(int i = 0; i<10; i++){
         for(int j = 0; j<10; j++){
             printf("%lf\t", data_loaded[i][j]); 
         }
         printf("\n");
     }
+
+    for(int i = data_loaded_lines - 1; i>=0; i--){
+        free(data_loaded[i]);
+    }
+    free(data_loaded);
 }

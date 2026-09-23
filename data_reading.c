@@ -72,3 +72,10 @@ void print_data(int initial_line, int final_line, double** data_loaded){
         printf("\n");
     }
 }
+
+void free_data_loaded(double** data_loaded, int data_loaded_lines){
+    for(int i = data_loaded_lines - 1; i>=0; i--){
+        free(data_loaded[i]);
+    }
+    free(data_loaded);
+}

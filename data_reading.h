@@ -18,6 +18,8 @@ typedef enum {
 
 double** initialize_data_loaded(int, int);
 
+void free_data_loaded(double**, int);
+
 void get_file_name(char*, const char*, char*, char);
 
 void make_file_path(char*, const char*, char*, char*);

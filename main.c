@@ -20,8 +20,6 @@ void main(){
 
     print_data(0, 100, data_loaded);
 
-    for(int i = data_loaded_lines - 1; i>=0; i--){
-        free(data_loaded[i]);
-    }
-    free(data_loaded);
+    free_data_loaded(data_loaded, data_loaded_lines);
+    data_loaded = NULL;
 }

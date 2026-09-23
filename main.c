@@ -18,6 +18,8 @@ void main(){
 
     load_file_data(file_path, data_loaded);
 
+    print_data(0, 100, data_loaded);
+
     for(int i = data_loaded_lines - 1; i>=0; i--){
         free(data_loaded[i]);
     }

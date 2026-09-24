@@ -10,15 +10,39 @@ double** initialize_data_loaded(int lines, int columns){
     return data_loaded;
 }
 
-void get_file_name(char* file_name, const char* folder, char* subject_number, char sample_number){
+void get_file_name(char* file_name, const char* folder, char* subject_number, char* sample_number){
     char command[256];
-    sprintf(command, "cd %s/%s && ls %c*", folder, subject_number, sample_number);
+    sprintf(command, "cd %s/%s && ls %s*", folder, subject_number, sample_number);
 
     FILE* pipe = popen(command, "r");
     fscanf(pipe, "%39s", file_name);
 
     pclose(pipe);
     pipe = NULL;
+}
+
+void scan_subject_number(char* subject_number){
+    printf("Enter the subject number (01-36): ");
+    scanf("%s", subject_number);
+}
+
+void scan_sample_number(char* sample_number){
+    printf("Enter the sample number (1-2): ");
+    scanf("%s", sample_number);
+}
+
+int scan_initial_line(){
+    int initial_line;
+    printf("Enter the initial_line ( >= 0): ");
+    scanf("%d", &initial_line);
+    return initial_line;
+}
+
+int scan_final_line(){
+    int final_line;
+    printf("Enter the final_line ( <= 100000): ");
+    scanf("%d", &final_line);
+    return final_line;
 }
 
 void make_file_path(char* file_path, const char* folder, char* subject_number, char* file_name){

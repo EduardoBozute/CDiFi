@@ -20,7 +20,15 @@ double** initialize_data_loaded(int, int);
 
 void free_data_loaded(double**, int);
 
-void get_file_name(char*, const char*, char*, char);
+void get_file_name(char*, const char*, char*, char*);
+
+void scan_subject_number(char*);
+
+void scan_sample_number(char*);
+
+int scan_initial_line();
+
+int scan_final_line();
 
 void make_file_path(char*, const char*, char*, char*);
 
